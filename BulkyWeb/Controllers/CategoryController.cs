@@ -24,6 +24,15 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
+            if (int.TryParse(obj.Name, out int result) )
+            {
+                ModelState.AddModelError("name", "The value of Name cannot be all of numbers");
+            } 
+
+            if (obj.Name == obj.DisplayOrder.ToString()) 
+            {
+                ModelState.AddModelError("name" ,"The DisplayOrder cannot exaclty match the Name");
+            }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
