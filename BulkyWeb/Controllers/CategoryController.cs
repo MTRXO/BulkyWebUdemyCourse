@@ -24,14 +24,14 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if (int.TryParse(obj.Name, out int result) )
+            if (int.TryParse(obj.Name, out int result))
             {
                 ModelState.AddModelError("name", "The value of Name cannot be all of numbers");
-            } 
+            }
 
-            if (obj.Name == obj.DisplayOrder.ToString()) 
+            if (obj.Name == obj.DisplayOrder.ToString())
             {
-                ModelState.AddModelError("name" ,"The DisplayOrder cannot exaclty match the Name");
+                ModelState.AddModelError("name", "The DisplayOrder cannot exaclty match the Name");
             }
             if (ModelState.IsValid)
             {
@@ -41,6 +41,37 @@ namespace BulkyWeb.Controllers
 
             }
             else return View();
+
         }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id== null || id == 0)
+            {
+                return NotFound();
+            }
+            Category categoryFromDb = _db.Categories.Find(id);
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(categoryFromDb);
+        }
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+      
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Update   (obj);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+
+            }
+            else return View();
+        }
+
     }
+
+
 }
