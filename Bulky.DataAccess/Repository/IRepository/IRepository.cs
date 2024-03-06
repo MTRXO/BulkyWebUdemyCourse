@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Bulky.DataAccess.IRepository
+namespace Bulky.DataAccess.Repository.IRepository
 {
     public interface IRepository<T> where T : class
     {
@@ -14,6 +14,6 @@ namespace Bulky.DataAccess.IRepository
         void Add(T entity);
         void Remove(T entity);
         void Remove(IEnumerable<T> entity);
-  
+
     }
 }

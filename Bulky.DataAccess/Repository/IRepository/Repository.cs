@@ -8,21 +8,21 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 
-namespace Bulky.DataAccess.IRepository
+namespace Bulky.DataAccess.Repository.IRepository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
         private readonly ApplicationDBContext _db;
-        internal DbSet<T> _dbSet;   
+        internal DbSet<T> _dbSet;
         public Repository(ApplicationDBContext db)
         {
-           _db = db;
-           this._dbSet = _db.Set<T>();  
+            _db = db;
+            _dbSet = _db.Set<T>();
         }
 
         public void Add(T entity)
         {
-           _dbSet.Add(entity);  
+            _dbSet.Add(entity);
         }
 
         public T Get(Expression<Func<T, bool>> filter)
@@ -37,13 +37,13 @@ namespace Bulky.DataAccess.IRepository
         public IEnumerable<T> GetAll()
         {
             IQueryable<T> query = _dbSet;
-            return query.ToList();  
-         }
+            return query.ToList();
+        }
 
         public void Remove(T entity)
         {
 
-             _dbSet.Remove(entity); 
+            _dbSet.Remove(entity);
         }
 
         public void Remove(IEnumerable<T> entity)
