@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using Bulky.DataAccess.Repository.IRepository;
 
-
-namespace Bulky.DataAccess.Repository.IRepository
+namespace Bulky.DataAccess.Repository
 {
     public class Repository<T> : IRepository<T> where T : class
     {
