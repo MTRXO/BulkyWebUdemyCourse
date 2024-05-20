@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository.IRepository
 {
-    internal class UnitOfWork: IUnitOfWork
+    public class UnitOfWork: IUnitOfWork
     {
         private readonly ApplicationDBContext _db;
         public ICategoryRepository Category { get; set; }
