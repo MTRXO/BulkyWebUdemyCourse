@@ -21,7 +21,7 @@ namespace Bulky.DataAccess.Repository.IRepository
 
         public void Save()
         {
-            throw new NotImplementedException();    
+            _db.SaveChanges();  
         }
     }
 }
